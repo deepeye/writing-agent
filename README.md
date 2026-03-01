@@ -1,4 +1,4 @@
-# 写稿Agent v0.6.1
+# 写稿Agent v0.6.3
 
 > 🚀 一个基于 Claude Code Skills + Subagents 的全栈写作系统。
 > 
@@ -13,7 +13,7 @@
 > 从选题生成、风格建模、写作执行到发布评审与配图，提供完整的 AI 写作工作流。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-v0.6.0-blue.svg)](https://github.com/dongbeixiaohuo/writing-agent/releases)
+[![Version](https://img.shields.io/badge/version-v0.6.3-blue.svg)](https://github.com/dongbeixiaohuo/writing-agent/releases)
 [![Claude Code](https://img.shields.io/badge/Claude-Code%20Skills-blue)](https://code.claude.com)
 [![DeepSeek](https://img.shields.io/badge/DeepSeek-Compatible-green)](https://platform.deepseek.com)
 
@@ -21,7 +21,13 @@
 
 写稿Agent 是一个**协作式写作工作流系统**，通过强制性的模式选择、需求澄清、风格建模、素材调研和主编审稿，帮助你写出**不像AI生成**的高质量文章。
 
-### v0.6.0 去AI味与真实模拟 ⭐ New
+### v0.6.3 去AI味专家进阶升级 ⭐ New
+- ⚖️ **50分制质量自评**：加入严苛输出把控，强迫 AI 根据五大维度自评，低于 40 分内部打回重写。
+- 🚫 **致命黑名单词库**：精准打击“此外”、“至关重要”、“织锦”、“格局”等典型机器生成的“塑料词汇”。
+- ⚡ **快速排雷自检 (Quick Check)**：强制打断 AI 常见的“三段式强迫症”、“等长句式”和“无聊排比”。
+- ❤️ **全新注入灵魂指令**：通过引入具体生活细节、强加第一人称时局感、甚至刻意的逻辑混乱，赋予文本真正的强人设观感。
+
+### v0.6.0 去AI味与真实模拟
 - 🤖 **Humanizer 去AI味专家**：基于 Wikipedia AI Cleanup 项目，识别并修复24种AI痕迹（内容/语言/风格），注入人类"灵魂"。
 - 🎨 **Article Illustrator 文章配图师**：为文章自动设计视觉风格并生成高质量配图（封面/插图/概念图）。
 - 📺 **读者模拟器 v3.0 直播版**：模拟真实读者的"直播现场"——心理弹幕、朋友圈截图预览。

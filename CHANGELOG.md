@@ -5,6 +5,15 @@ All notable changes to 写稿Agent will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.3] - 2026-03-01
+
+### Changed
+- ✨ **Humanizer (去AI味专家) 进阶架构升级 v1.2.0**：深度集成 `Humanizer-zh` 核心规则引擎，全面增强文本净化能力：
+  - **新增 50分 质量强制自评系统**：要求输出前进行五维打分（直接性、节奏感、信任度、真实性、精炼度），低于 40 分强制重写。
+  - **引入致命黑名单拦截**：强化高发 AI 词汇（如“此外”、“至关重要”、“织锦”等）的硬性过滤。
+  - **新增 Quick Check 快速排雷自检**：在执行前硬性要求打破“三段式”、“等长句”及排比依赖。
+  - **增强“注入灵魂”指令**：明确要求增加第一人称反应内心戏，允许真实视角的混乱发散，用体感细节替代抽象评价。
+
 ## [0.6.2] - 2026-02-21
 
 ### Changed
