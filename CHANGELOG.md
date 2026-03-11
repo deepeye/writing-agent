@@ -5,6 +5,18 @@ All notable changes to 写稿Agent will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.4] - 2026-03-12
+
+### Changed
+- 🔧 **技能结构优化**：应用 Skill Creator 的 Progressive Disclosure 原则，大幅提升技能加载效率：
+  - **公众号文章获取**：精简 SKILL.md 从 1238 行至 ~200 行（减少 85% Token 使用），创建 4 个 reference 文件（readability-guide、config-options、best-practices、platform-specific）
+  - **工作流导演**：新增"Agent 工具调用示例"章节，提供 3 个完整的 Subagent 调用示例，提升可执行性
+  - **风格建模**：创建 `references/15-dimensions.md` 详细文档，精简主文档至 ~150 行，详细内容按需加载
+
+### Technical
+- 所有技能现在符合 Progressive Disclosure 最佳实践：核心流程保留在 SKILL.md（<200 行），详细说明拆分到 references 目录
+- 技能触发时的 Token 消耗显著降低，提升响应速度和上下文利用率
+
 ## [0.6.3] - 2026-03-01
 
 ### Changed
