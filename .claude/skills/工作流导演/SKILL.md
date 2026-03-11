@@ -81,6 +81,47 @@ description: |
 | `humanizer` | 去AI味专家 |
 | `article-illustrator` | 文章配图师 |
 
+### Agent 工具调用示例
+
+**重要**：必须使用 Agent 工具来调用 Subagent，而不是仅仅文字描述。
+
+#### 示例 1：调用 writing-clarifier（澄清需求）
+
+当用户选择模式后，使用以下方式调用 Subagent：
+
+```
+使用 Agent 工具，参数如下：
+- description: "澄清写作需求"
+- prompt: "使用 writing-clarifier 子代理来澄清写作需求。\n用户请求：帮我写一篇关于35岁职业危机的文章\n项目名称：35岁职业危机"
+- subagent_type: "writing-clarifier"
+```
+
+#### 示例 2：调用 research-expert（调研素材）
+
+```
+使用 Agent 工具，参数如下：
+- description: "调研素材"
+- prompt: "使用 research-expert 子代理来调研素材。\n项目名称：35岁职业危机\n请先读取 articles/35岁职业危机/01_theme.md 获取调研方向。"
+- subagent_type: "research-expert"
+```
+
+#### 示例 3：调用 writing-executor（写作执行）
+
+```
+使用 Agent 工具，参数如下：
+- description: "执行写作"
+- prompt: "使用 writing-executor 子代理来执行写作。\n项目名称：35岁职业危机\n标题：35岁，你的职场护城河在哪里？\n请先读取 articles/35岁职业危机/ 下的所有准备文件。"
+- subagent_type: "writing-executor"
+```
+
+#### 关键要点
+
+1. **必须使用 Agent 工具**：不能只是文字描述"使用 xxx 子代理"
+2. **description 参数**：简短描述任务（3-5个字）
+3. **prompt 参数**：包含完整的任务描述和必要参数
+4. **subagent_type 参数**：指定要调用的 Subagent 名称
+5. **提供上下文**：在 prompt 中说明需要读取哪些文件
+
 ---
 
 ## 轻量模式（A）流程
