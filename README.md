@@ -202,7 +202,9 @@ cp -r .claude/skills/* ~/.claude/skills/
 
 **方式二：使用国产大模型（推荐，更经济）**
 
-本项目支持通过 Anthropic API 兼容接口接入多种国产大模型：
+本项目支持通过 Anthropic API 兼容接口接入多种国产大模型。根据使用频率，可选择按量付费或包月套餐：
+
+#### 按量付费模型（适合偶尔使用）
 
 | 模型 | 推荐指数 | 成本 | 获取 API Key | 官方文档 |
 |------|---------|------|-------------|---------|
@@ -211,6 +213,31 @@ cp -r .claude/skills/* ~/.claude/skills/
 | **MiniMax** | ⭐⭐⭐⭐ | 中等 | [MiniMax 平台](https://platform.minimaxi.com) | [接入文档](https://platform.minimaxi.com/docs/api-reference/text-anthropic-api) |
 
 > **本项目所有测试均基于 DeepSeek-V3 模型完成。** 一篇 2000 字文章成本约 ¥0.03，性价比极高。
+
+#### 💰 Coding Plan 包月套餐（适合频繁使用，强烈推荐）
+
+如果你需要频繁使用本项目，包月套餐成本几乎可以忽略不计。以下是主流平台对比：
+
+| 平台 | 套餐 | 首月价格 | 续费价格 | 月度额度 | 推荐指数 |
+|------|------|---------|---------|---------|---------|
+| **[阿里云百炼](https://www.alibabacloud.com/help/zh/model-studio/coding-plan-guide/)** | Lite | ¥7.9 | ~¥40 | 18k 次请求 | ⭐⭐⭐⭐⭐ |
+| **[阿里云百炼](https://www.alibabacloud.com/help/zh/model-studio/coding-plan-guide/)** | Pro | ¥39.9 | ~¥200 | 90k 次请求 | ⭐⭐⭐⭐ |
+| **[火山引擎](https://developer.volcengine.com/articles/7595502342175195187)** | Lite | ¥9.9 | ~¥50 | 1200 次/5h | ⭐⭐⭐⭐⭐ |
+| **[火山引擎](https://developer.volcengine.com/articles/7595502342175195187)** | Pro | ¥49.9 | - | 更高额度 | ⭐⭐⭐⭐ |
+| **[无问苍穹](https://docs.infini-ai.com/gen-studio/coding-plan/)** | Lite | ¥19.9 | ¥40 | 12k 次/月 | ⭐⭐⭐⭐ |
+| **[无问苍穹](https://docs.infini-ai.com/gen-studio/coding-plan/)** | Pro | ¥40 | ¥200 | 60k 次/月 | ⭐⭐⭐⭐ |
+| **[MiniMax](https://platform.minimaxi.com/docs/guides/pricing-coding-plan)** | Starter | ¥29/月 | ¥290/年 | 40 prompts/5h | ⭐⭐⭐⭐ |
+| **[智谱 GLM](https://bigmodel.cn/claude-code)** | Lite | ~¥30 | ¥411/年 | 数千次/月 | ⭐⭐⭐ |
+| **[Kimi Code](https://www.kimi.com/user/agreement/zh/membershipBenefits)** | 基础 | ¥49/月 | - | ~300 次/月 | ⭐⭐⭐ |
+
+**💡 如何选择：**
+
+- **偶尔使用（每月 < 10 篇文章）**：推荐 **DeepSeek-V3 按量付费**，成本极低
+- **轻度使用（每月 10-50 篇）**：推荐 **阿里云百炼 Lite**（首月 ¥7.9）或 **火山引擎 Lite**（首月 ¥9.9）
+- **中度使用（每月 50-200 篇）**：推荐 **无问苍穹 Lite**（¥19.9 特惠）或 **MiniMax Starter**（¥29/月）
+- **重度使用（每月 > 200 篇）**：推荐 **阿里云百炼 Pro** 或 **无问苍穹 Pro**
+
+**配置方式：** 所有 Coding Plan 套餐订阅后会获得专用 API Key，配置方式与按量付费模型完全相同（参考下方步骤 5）。
 
 ### 安装步骤（新手友好版）
 
@@ -739,7 +766,7 @@ CC-Switch 是一个跨平台的桌面应用，专为 Claude Code、Codex 和 Gem
 
 ## 🚀 使用示例
 
-### 协作写作流程（8阶段）
+### 协作写作流程（11阶段）
 
 ```
 你："我想写一篇关于35岁程序员危机的深度分析文章，3000字"
