@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **工作流导演**：新增"Agent 工具调用示例"章节，提供 3 个完整的 Subagent 调用示例，提升可执行性
   - **风格建模**：创建 `references/15-dimensions.md` 详细文档，精简主文档至 ~150 行，详细内容按需加载
 
+### Fixed
+- 🐛 **修复工作流 Stage 10 执行逻辑**：Stage 10 (去AI味) 从可选改为强制执行，确保所有文章都经过 Humanizer 处理后才进入 Stage 11 (配图可选) 和 Stage 12 (终极收尾)
+
 ### Technical
 - 所有技能现在符合 Progressive Disclosure 最佳实践：核心流程保留在 SKILL.md（<200 行），详细说明拆分到 references 目录
 - 技能触发时的 Token 消耗显著降低，提升响应速度和上下文利用率
