@@ -60,22 +60,17 @@
 
 ### 核心特点
 
-- ✅ **Subagent 架构**：12 个独立 Subagent 实现上下文隔离，节省 Token
-- ✅ **协作工作流**：10阶段深度创作模式，包含选题、调研、审稿完整流程
-- ✅ **标题设计师 v2.0**：15种爆款标题公式（6大类）+ 5个候选 ✨ v0.5.1 New
-- ✅ **反AI味道**：自动去除小标题病、排比上瘾、格式洁癖等AI典型特征
-- ✅ **风格建模 v3.1**：支持公众号链接一键提取、多篇批量建模、增量更新风格库
-- ✅ **选题生成器**：不知道写什么？AI 基于热点、个人优势和竞品分析智能推荐选题
-- ✅ **自动素材归档**：提取的文章自动保存为本地 Markdown，构建个人知识库
-- ✅ **强制模式选择**：轻量模式（快速产出）vs 协作模式（深度创作）
-- ✅ **素材调研**：自动搜集真实数据，新增爆款拆解与痛点验证
-- ✅ **字数精准控制**：通过外部工具统计，误差控制在±20%以内
-- ✅ **发布前评审 v2.0**：发布前5问 + 红队7项 + 具体修改建议 ✨ v0.5.1 New
-- ✅ **读者模拟 v3.0**：心理弹幕 + 真话吐槽 + 朋友圈现场直播 ✨ v0.6.0 New
-- ✅ **Humanizer**：深度去AI味 + 注入灵魂（观点/节奏/细节） ✨ v0.6.0 New
-- ✅ **Article Illustrator**：Type × Style 双维度配图设计 + 自动生成/植入 ✨ v0.6.0 New
-- ✅ **主编审稿 v2.2**：12项AI味道量化检测
-- ✅ **版本管理**：自动保存初稿、修订稿、最终稿，可追溯每次修改
+- ✅ **自进化归因引擎**：系统自动追溯初稿与定稿差异，抽取经验打包成 `99_episode.md` 实现跨次记忆 ✨ v0.7.0 New
+- ✅ **无痕排版 Hook**：自动拦截大模型生成结果，利用纯 Python 正则脚本清除底噪，实现公众号直接粘贴 ✨ v0.7.0 New
+- ✅ **超大编制 Subagent 架构**：16 个独立 Subagent 实现上下文完美隔离，将漫长的写作长链路切碎，节省海量 Token
+- ✅ **深度协作工作流**：全 14 阶段创作者模式，囊括盘前准备、记忆装载、素材分析到模拟直播的全链条闭环
+- ✅ **强制去 AI 味道**：Humanizer与24条红线规则，自动去除小标题病、排比上瘾、过度升华等AI特有文风
+- ✅ **风格建模 v3.1**：支持公众号 URL 自动抓取分析、批量多篇拆解、增量汇入语料库
+- ✅ **共情点与标题设计**：提供15类标题公式套件和5个候选方案，强制规划读者情绪跳动周期
+- ✅ **全景素材调研**：不仅梳理网络数据，还进行结构论证、爆款拆解与痛点验伪
+- ✅ **读者实况沙盘**：上线前模拟发出后的心理弹幕、真话吐槽以及朋友圈转发文案 ✨ v0.6.0
+- ✅ **Article Illustrator**：跨端联动生图大模型，为文章生成带情绪的视觉风格匹配插图 ✨ v0.6.0
+- ✅ **严苛自裁机制**：评分系统与强制追问交叉质检，发现敷衍输出直接发回给重构引擎，杜绝烂尾
 
 ---
 
@@ -101,45 +96,51 @@
 │   ├── 公众号文章获取/         # 独立工具（检测到URL自动触发）
 │   └── 风格建模/               # 独立工具（"学习这个风格"触发）
 │
-└── agents/                     # 显式调用，上下文隔离（16个）
+└── agents/                     # 显式调用，上下文隔离（16个编外专员）
     │
-    ├── ── Stage 0: 选题阶段 ──
+    ├── ── Stage 0-X: 记忆引擎 ──
+    ├── memory-loader.md        # 记忆装载器 ✨ v0.7.0 New
+    ├── edit-diff-learner.md    # 归因溯源与经验萃取 ✨ v0.7.0 New
+    │
+    ├── ── Stage X: 选题库系统 ──
     ├── topic-generator.md      # 选题生成器
-    ├── topic-research.md       # 选题调研
+    ├── topic-research.md       # 选题深度剖析
     │
-    ├── ── Stage 1-5: 准备阶段 ──
-    ├── writing-clarifier.md    # 澄清需求
-    ├── research-expert.md      # 调研资料
-    ├── outline-architect.md    # 大纲设计
-    ├── empathy-designer.md     # 共情点设计
-    ├── concretizer.md          # 具象化专家
-    ├── title-designer.md       # 标题设计师
+    ├── ── Stage 1-5: 策划定调 ──
+    ├── writing-clarifier.md    # 澄清需求与受众边界
+    ├── research-expert.md      # 调研资料池聚合
+    ├── outline-architect.md    # 逻辑大纲搭建
+    ├── empathy-designer.md     # 共情点/阅读心流设计
+    ├── concretizer.md          # 具象化特写与翻译
+    ├── title-designer.md       # 标题爆款设计与敲定
     │
-    ├── ── Stage 6: 写作阶段 ──
-    ├── writing-executor.md     # 写作执行
+    ├── ── Stage 6: 原创下笔 ──
+    ├── writing-executor.md     # 原生撰写执行
     │
-    ├── ── Stage 7-9: 审稿阶段 ──
-        ├── editor-review.md        # 主编审稿
-        ├── pre-publish-review.md   # 发布前评审
-        ├── toutiao-reader-test.md  # 读者模拟直播
-        ├── humanizer.md            # 去AI味专家 ✨ New
-        └── article-illustrator.md  # 文章配图师 ✨ New
+    ├── ── Stage 7-11: 审核防呆与升华 ──
+        ├── editor-review.md        # 主编初审筛雷
+        ├── pre-publish-review.md   # 发布前终级追问反馈
+        ├── toutiao-reader-test.md  # 读者群体模拟直播
+        ├── humanizer.md            # 去AI病理净化/灵魂注入
+        └── article-illustrator.md  # 高维情绪插图配图师
 ```
 
 ### 工作流程示意
 
 ```
-用户请求 → [工作流导演 Skill]
+用户请求 → [工作流导演 Skill] 介入指挥调度
     │
-    ├──→ "使用 writing-clarifier 子代理..." → 输出 01_theme.md
+    ├──→ "使用 memory-loader ... " → 将前世经验带入本期 00_memory_packet.md ✨ New
     │
-    ├──→ "使用 research-expert 子代理..." → 输出 02_cases.md
+    ├──→ "使用 outline-architect ... " → 输出带目标的 03_outline.md
     │
-    ├──→ "使用 outline-architect 子代理..." → 输出 03_outline.md
+    ├──→ "使用 writing-executor ... " → 注入规则与大纲产出 draft_v1.md
     │
-    ├──→ ... → 最终产出 draft_final.md
+    ├──→ "使用 humanizer ...." → 高压驱魔产出 _humanized.md
     │
-    └──→ "使用 humanizer 子代理..." → 最终注入灵魂 ✨ New
+    ├──→ 自动触发 [Hook: auto_clean_hook.py] 暴力排版净化 ✨ New
+    │
+    └──→ "使用 edit-diff-learner ... " → 碰撞首尾得出下一期的 99_episode.md 宝贵财富 ✨ New
 ```
 
 **每个 Subagent：**
@@ -223,17 +224,16 @@ cp -r .claude/skills/* ~/.claude/skills/
 
 如果你需要频繁使用本项目，包月套餐成本几乎可以忽略不计。以下是主流平台对比：
 
-| 平台 | 套餐 | 首月价格 | 续费价格 | 月度额度 | 推荐指数 |
-|------|------|---------|---------|---------|---------|
-| **[阿里云百炼](https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index)** | Lite | ¥7.9 | ~¥40 | 18k 次请求 | ⭐⭐⭐⭐⭐ |
-| **[阿里云百炼](https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index)** | Pro | ¥39.9 | ~¥200 | 90k 次请求 | ⭐⭐⭐⭐ |
-| **[火山引擎](https://www.volcengine.com/activity/codingplan)** | Lite | ¥9.9 | ~¥50 | 1200 次/5h | ⭐⭐⭐⭐⭐ |
-| **[火山引擎](https://www.volcengine.com/activity/codingplan)** | Pro | ¥49.9 | - | 更高额度 | ⭐⭐⭐⭐ |
-| **[无问苍穹](https://cloud.infini-ai.com/platform/ai)** | Lite | ¥19.9 | ¥40 | 12k 次/月 | ⭐⭐⭐⭐ |
-| **[无问苍穹](https://cloud.infini-ai.com/platform/ai)** | Pro | ¥40 | ¥200 | 60k 次/月 | ⭐⭐⭐⭐ |
-| **[MiniMax](https://platform.minimaxi.com/subscribe/coding-plan)** | Starter | ¥29/月 | ¥290/年 | 40 prompts/5h | ⭐⭐⭐⭐ |
-| **[智谱 GLM](https://open.bigmodel.cn/glm-coding)** | Lite | ~¥30 | ¥411/年 | 数千次/月 | ⭐⭐⭐ |
-| **[Kimi Code](https://www.kimi.com/code)** | 基础 | ¥49/月 | - | ~300 次/月 | ⭐⭐⭐ |
+| 平台 | 首月特惠 (Lite/Pro) | 续费价格 (Lite/Pro) | 月度额度 (Lite/Pro) | 推荐指数 |
+|------|--------------------|--------------------|--------------------|---------|
+| **[阿里云百炼](https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index)** | ¥7.9 / ¥39.9 | ~¥40 / ~¥200 | 18k / 90k 次请求 | ⭐⭐⭐⭐⭐ |
+| **[腾讯云](https://cloud.tencent.com/act/pro/codingplan)** | ¥7.9 / ¥39.9 | ~¥40 / ~¥200 | 充足 / 海量 | ⭐⭐⭐⭐⭐ |
+| **[百度千帆](https://cloud.baidu.com/product/codingplan.html)** | ¥7.9 / ¥39.9 | ~¥40 / ~¥200 | 充足 / 海量 | ⭐⭐⭐⭐⭐ |
+| **[火山引擎](https://www.volcengine.com/activity/codingplan)** | ¥9.9 / ¥49.9 | ~¥50 / 未定 | 1200次/5h / 更多 | ⭐⭐⭐⭐⭐ |
+| **[无问芯穹](https://cloud.infini-ai.com/platform/ai)** | ¥19.9 / ¥40.0 | ¥40 / ¥200 | 12k / 60k 次请求 | ⭐⭐⭐⭐ |
+| **[MiniMax](https://platform.minimaxi.com/subscribe/coding-plan)** | ¥29/月 (Starter) | ¥290/年 | 40 prompts/5h | ⭐⭐⭐⭐ |
+| **[智谱 GLM](https://open.bigmodel.cn/glm-coding)** | ~¥30/月 (Lite) | ¥411/年 | 数千次/月 | ⭐⭐⭐ |
+| **[Kimi Code](https://www.kimi.com/code)** | ¥49/月 (基础) | - | ~300 次/月 | ⭐⭐⭐ |
 
 **💡 如何选择：**
 
@@ -445,11 +445,27 @@ ls -la .claude/skills/
 
 ---
 
-#### 步骤 5：配置第三方 API（三种方法任选其一）
+#### 步骤 5：配置第三方 API（推荐 CC-Switch 可视化工具）
 
-本项目支持通过 Anthropic API 兼容接口接入多种第三方模型。以下以通用配置为例。
+本项目支持通过 Anthropic API 兼容接口接入多种第三方模型。
 
-**你需要准备的信息：**
+🔥 **首选推荐：使用跨平台可视化管理工具 CC-Switch**（完全免费）
+
+如果你不想折腾命令行和环境变量，或者需要频繁在 DeepSeek、智谱、Minimax 等多个 API 之间切换，强烈推荐 **[CC-Switch](https://github.com/farion1231/cc-switch)**。
+这是一款专为 Claude Code 以及同类 CLI 工具设计的桌面全能网关，支持 Windows/macOS/Linux。
+
+**核心优势：**
+- 🔄 **一键切换**：图形化界面配置 API Key，点一下鼠标即可无缝切换不同的大模型，免去所有修改环境变量的烦恼。
+- 📦 **自动拉取**：可视化安装与管理各种 MCP 服务器、Prompt 和 Skills。
+- 📊 **多语言与统计**：自带用量追踪，API 成本一目了然；支持完整的本地多流管理。
+
+**获取方式：** 前往 [CC-Switch Releases](https://github.com/farion1231/cc-switch/releases) 下载对应系统的安装包即可。
+
+---
+
+如果由于某些原因你无法使用 UI 工具，可以通过以下传统的**纯代码/命令行方法**进行手动配置：
+
+**你需要手动准备的信息：**
 - `API_BASE_URL`：第三方 API 的基础地址（如 `https://api.example.com/v1`）
 - `API_KEY`：你的 API 密钥（从第三方平台获取）
 
@@ -728,50 +744,9 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 </details>
 
-<details>
-<summary><b>💡 推荐工具：Windows 用户的多 API 环境管理神器</b></summary>
-
-如果你觉得手动管理环境变量比较麻烦，特别是需要在多个 API 提供商之间切换时，强烈推荐使用 **CC-Switch** 工具。
-
-**CC-Switch 是什么？**
-
-CC-Switch 是一个跨平台的桌面应用，专为 Claude Code、Codex 和 Gemini CLI 设计的一体化助手工具。
-
-**核心功能：**
-- 🔄 **一键切换 API 配置**：支持多个 API 提供商配置，无需手动修改环境变量
-- 📦 **MCP 服务器管理**：可视化管理 MCP 服务器
-- 🎯 **Skills 管理**：自动扫描和安装 Claude Skills
-- 💬 **Prompts 管理**：多预设系统提示词管理
-- 🌐 **多语言支持**：中文/英文/日文界面
-- 💾 **配置同步**：支持配置云同步（未来功能）
-
-**下载安装：**
-
-访问 [CC-Switch GitHub Releases](https://github.com/farion1231/cc-switch/releases) 下载最新版本：
-
-- **Windows**: 下载 `CC-Switch-v{version}-Windows.msi` 安装包
-- **macOS**: 通过 Homebrew 安装 `brew install --cask cc-switch`
-- **Linux**: 支持 `.deb`、`.rpm`、`.AppImage` 等多种格式
-
-**使用方法：**
-
-1. 安装并启动 CC-Switch
-2. 在界面中添加你的 API 配置（支持 DeepSeek、智谱、MiniMax 等）
-3. 一键切换不同的 API 环境
-4. 无需手动修改配置文件或环境变量
-
-**项目地址：** [https://github.com/farion1231/cc-switch](https://github.com/farion1231/cc-switch)
-
-**适合人群：**
-- ✅ 需要频繁切换多个 API 提供商的用户
-- ✅ 不熟悉命令行和环境变量配置的新手
-- ✅ 希望有可视化界面管理 Claude Code 配置的用户
-
-</details>
-
 ## 🚀 使用示例
 
-### 协作写作流程（11阶段）
+### 协作写作流程（全 14 阶段系统闭环）
 
 ```
 你："我想写一篇关于35岁程序员危机的深度分析文章，3000字"
@@ -785,8 +760,9 @@ Claude 会引导你：
 你选择 B（协作模式）后：
 
 📋 完整工作流：
-□ Stage 0: 选题调研（选题前置验证）✨ New
-   - 热点扫描/爆款拆解/痛点验证
+□ Stage 0: 🧠 经验装载 (记忆编译) ✨ v0.7.0 New
+   - 读取过往 `99_episode.md` 修正历史
+   - 生成 `00_memory_packet.md` 作为写作铁律
    
 □ Stage 1: 主题与读者校准
    - 选择切入方向（A/B/C）
@@ -803,16 +779,16 @@ Claude 会引导你：
    - 预测读者心理路径
    - ⚡ 强化开头钩子设计
    
-□ Stage 5: 具象化翻译（按需）
-   - 将抽象概念转化为具体表达
+□ Stage 5: 🧱 具象化翻译
+   - 将抽象理论转化为带特写镜头的画面
    
 □ Stage 5.5: 标题设计 ⭐ 必须
    - 设计3个候选标题让你选择
    - ⚡ 植入爆款标题公式
    
-□ Stage 6: 正式创作
-   - 分步写作（开头→主体→结尾）
-   - ⚡ 强制执行前50字生死线
+□ Stage 6: ✍️ 正式创作
+   - 前往原生初稿（draft_v1.md）
+   - ⚡ 强制阅读 Stage 0 记忆包
    
 □ Stage 7: 主编审稿与改稿
    - 重点检查AI味道
@@ -828,10 +804,18 @@ Claude 会引导你：
    - 深度扫描24种AI痕迹
    - 注入观点与灵魂
    
-□ Stage 11: 视觉增强 (配图) ✨ New
+□ Stage 11: 🎨 视觉增强 (可选) ✨ New
    - 视觉风格设计 (Flat/Lofi/Cyberpunk)
    - 自动生成 3-5 张配图并植入
 
+□ Stage 12: 📤 终局排版 Hook ✨ v0.7.0 New
+   - 脱离 LLM，通过后台正则自动洗版
+   - 生成完全排版干净的 `_clean.txt`
+
+□ Stage 13: 🔄 经验归因蒸馏 ✨ v0.7.0 New
+   - 自动回溯对撞成稿与初稿修改历史
+   - 提取新约束沉淀至 `99_episode.md`，用于未来的长记性学习
+```
 ### 如何为文章配图
 
 如果在写作流程中没有生成配图，你可以随时手动调用 `article-illustrator` 子代理：
