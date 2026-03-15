@@ -5,6 +5,19 @@ All notable changes to 写稿Agent will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-03-15
+
+### Added
+- ✨ **系统自进化双轴架构**：引入全新的采样与编译闭环，使系统具备跨项目的长期记忆能力：
+  - **Stage 13 自动复盘 (`edit-diff-learner`)**：在每次定稿后自动对撞 AI 初稿与最终用户修改稿，按 15 维风格 DSL 归因提炼写作经验。
+  - **Stage 0 记忆装载 (`memory-loader`)**：每次启动新项目前，自动扫描历史复盘，将高频经验编译提纯为极简的记忆包，注入当前上下文。
+- ⚙️ **自动化物理排版 Hook**：引入 Claude Code Hooks 机制（`auto_clean_hook.py` 和 `generate_clean.py`），在全流程结束时脱离 LLM 进行正则级清洗，100% 稳定输出无缝适配微信公众号的排版纯净版 (`_clean.txt`)。
+
+### Changed
+- 🔄 **工作流导演升级为 14 阶段**：前后分别扩建了 记忆装载 和 自动复盘 环节。将可调度的 Subagent 扩容至 16 个。
+- 🧠 **代理上下文注入**：深度改造主力写手代理（`writing-executor`、`humanizer`、`title-designer`、`outline-architect`），强制在执行前加载历史经验包，实现精准的偏好纠偏。
+- 🔧 **项目级配置分离**：新建 `.claude/settings.json` 以共享 Hooks 配置，从个人授权级别的 `.local.json` 中剥离。
+
 ## [0.6.4] - 2026-03-12
 
 ### Changed

@@ -1,8 +1,9 @@
-# 写稿Agent v0.6.4
+# 写稿Agent v0.7.0
 
 > 🚀 一个基于 Claude Code Skills + Subagents 的全栈写作系统。
 > 
-> **不仅是写作，更是打磨：**
+> **不仅是写作，更是打磨进化：**
+> *   🧠 **自进化架构**：首次引入采样编译闭环，能记住修改偏好并复用，越用越顺手。
 > *   🤖 **反AI味写作**：从选题到初稿，源头遏制 AI 腔调。
 > *   🧬 **深度 Humanizer**：注入人类观点、细节与灵魂，彻底去除机器味。
 > *   🎨 **文章配图师**：自动设计视觉风格，生成并植入高质量配图。
@@ -13,7 +14,7 @@
 > 从选题生成、风格建模、写作执行到发布评审与配图，提供完整的 AI 写作工作流。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-v0.6.4-blue.svg)](https://github.com/dongbeixiaohuo/writing-agent/releases)
+[![Version](https://img.shields.io/badge/version-v0.7.0-blue.svg)](https://github.com/dongbeixiaohuo/writing-agent/releases)
 [![Claude Code](https://img.shields.io/badge/Claude-Code%20Skills-blue)](https://code.claude.com)
 [![DeepSeek](https://img.shields.io/badge/DeepSeek-Compatible-green)](https://platform.deepseek.com)
 
@@ -21,7 +22,11 @@
 
 写稿Agent 是一个**协作式写作工作流系统**，通过强制性的模式选择、需求澄清、风格建模、素材调研和主编审稿，帮助你写出**不像AI生成**的高质量文章。
 
-### v0.6.4 技能结构优化 ⭐ New
+### v0.7.0 系统自进化双轴架构 ⭐ New
+- 🔄 **自动复盘与经验装载**：引入 `edit-diff-learner` 和 `memory-loader`。系统会自动对撞定稿与初稿提炼写作经验（15维风格DSL），并在下次写作前编译记忆包 (`00_memory_packet.md`)，注入到大纲、标题、执行和去AI味 Agent 中，实现"长记性"。
+- ⚙️ **自动化物理排版 Hook**：利用 Claude Code Hooks 机制跳出大模型约束，在工作流大结局通过 `auto_clean_hook.py` 静默生成排版纯净版 `_clean.txt`。
+
+### v0.6.4 技能结构优化
 - 🔧 **Progressive Disclosure 架构升级**：应用 Skill Creator 最佳实践，大幅提升技能加载效率。
 - 📉 **Token 使用优化**：公众号文章获取技能从 1238 行精简至 ~200 行，Token 消耗减少 85%。
 - 📚 **文档结构化**：核心流程保留在 SKILL.md，详细说明拆分到 references 目录，按需加载。
@@ -85,7 +90,7 @@
 | **适用场景** | 需要自动识别意图 | 需要隔离执行的任务 |
 | **Token 消耗** | 会累积 | 每个任务独立 |
 
-### 本项目的架构（v0.5.0）
+### 本项目的架构（v0.7.0）
 
 本项目采用 **Skills + Subagents 混合架构**：
 
@@ -96,7 +101,7 @@
 │   ├── 公众号文章获取/         # 独立工具（检测到URL自动触发）
 │   └── 风格建模/               # 独立工具（"学习这个风格"触发）
 │
-└── agents/                     # 显式调用，上下文隔离（12个）
+└── agents/                     # 显式调用，上下文隔离（16个）
     │
     ├── ── Stage 0: 选题阶段 ──
     ├── topic-generator.md      # 选题生成器
@@ -220,15 +225,15 @@ cp -r .claude/skills/* ~/.claude/skills/
 
 | 平台 | 套餐 | 首月价格 | 续费价格 | 月度额度 | 推荐指数 |
 |------|------|---------|---------|---------|---------|
-| **[阿里云百炼](https://www.alibabacloud.com/help/zh/model-studio/coding-plan-guide/)** | Lite | ¥7.9 | ~¥40 | 18k 次请求 | ⭐⭐⭐⭐⭐ |
-| **[阿里云百炼](https://www.alibabacloud.com/help/zh/model-studio/coding-plan-guide/)** | Pro | ¥39.9 | ~¥200 | 90k 次请求 | ⭐⭐⭐⭐ |
-| **[火山引擎](https://developer.volcengine.com/articles/7595502342175195187)** | Lite | ¥9.9 | ~¥50 | 1200 次/5h | ⭐⭐⭐⭐⭐ |
-| **[火山引擎](https://developer.volcengine.com/articles/7595502342175195187)** | Pro | ¥49.9 | - | 更高额度 | ⭐⭐⭐⭐ |
-| **[无问苍穹](https://docs.infini-ai.com/gen-studio/coding-plan/)** | Lite | ¥19.9 | ¥40 | 12k 次/月 | ⭐⭐⭐⭐ |
-| **[无问苍穹](https://docs.infini-ai.com/gen-studio/coding-plan/)** | Pro | ¥40 | ¥200 | 60k 次/月 | ⭐⭐⭐⭐ |
-| **[MiniMax](https://platform.minimaxi.com/docs/guides/pricing-coding-plan)** | Starter | ¥29/月 | ¥290/年 | 40 prompts/5h | ⭐⭐⭐⭐ |
-| **[智谱 GLM](https://bigmodel.cn/claude-code)** | Lite | ~¥30 | ¥411/年 | 数千次/月 | ⭐⭐⭐ |
-| **[Kimi Code](https://www.kimi.com/user/agreement/zh/membershipBenefits)** | 基础 | ¥49/月 | - | ~300 次/月 | ⭐⭐⭐ |
+| **[阿里云百炼](https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index)** | Lite | ¥7.9 | ~¥40 | 18k 次请求 | ⭐⭐⭐⭐⭐ |
+| **[阿里云百炼](https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index)** | Pro | ¥39.9 | ~¥200 | 90k 次请求 | ⭐⭐⭐⭐ |
+| **[火山引擎](https://www.volcengine.com/activity/codingplan)** | Lite | ¥9.9 | ~¥50 | 1200 次/5h | ⭐⭐⭐⭐⭐ |
+| **[火山引擎](https://www.volcengine.com/activity/codingplan)** | Pro | ¥49.9 | - | 更高额度 | ⭐⭐⭐⭐ |
+| **[无问苍穹](https://cloud.infini-ai.com/platform/ai)** | Lite | ¥19.9 | ¥40 | 12k 次/月 | ⭐⭐⭐⭐ |
+| **[无问苍穹](https://cloud.infini-ai.com/platform/ai)** | Pro | ¥40 | ¥200 | 60k 次/月 | ⭐⭐⭐⭐ |
+| **[MiniMax](https://platform.minimaxi.com/subscribe/coding-plan)** | Starter | ¥29/月 | ¥290/年 | 40 prompts/5h | ⭐⭐⭐⭐ |
+| **[智谱 GLM](https://open.bigmodel.cn/glm-coding)** | Lite | ~¥30 | ¥411/年 | 数千次/月 | ⭐⭐⭐ |
+| **[Kimi Code](https://www.kimi.com/code)** | 基础 | ¥49/月 | - | ~300 次/月 | ⭐⭐⭐ |
 
 **💡 如何选择：**
 
