@@ -58,8 +58,8 @@ description: |
 **示例**：
 ```
 使用 writing-clarifier 子代理来澄清写作需求。
-用户请求：帮我写一篇关于35岁职业危机的文章
-项目名称：35岁职业危机
+用户请求：帮我写一篇关于普通人中年破局的文章
+项目名称：普通人中年破局
 ```
 
 ### 可用 Subagent（16个）
@@ -94,7 +94,7 @@ description: |
 ```
 使用 Agent 工具，参数如下：
 - description: "澄清写作需求"
-- prompt: "使用 writing-clarifier 子代理来澄清写作需求。\n用户请求：帮我写一篇关于35岁职业危机的文章\n项目名称：35岁职业危机"
+- prompt: "使用 writing-clarifier 子代理来澄清写作需求。\n用户请求：帮我写一篇关于普通人如何跨越阶层认知的文章\n项目名称：普通人的认知破局"
 - subagent_type: "writing-clarifier"
 ```
 
